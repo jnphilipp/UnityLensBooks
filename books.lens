@@ -1,0 +1,11 @@
+[Lens]
+DBusName=unity.singlet.lens.books
+DBusPath=/unity/singlet/lens/books
+Name=Books
+Icon=/usr/share/unity/lenses/books/unity-lens-books.svg
+Description=Books Lens
+SearchHint=Search Books
+#Shortcut=c
+
+[Desktop Entry]
+X-Ubuntu-Gettext-Domain=books
