@@ -58,17 +58,19 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
 DistUtilsExtra.auto.setup(
     name='books',
     version='0.1',
-    #license='GPL-3',
-    #author='Your Name',
-    #author_email='email@ubuntu.com',
+    license='GPL-3',
+    author='jnphilipp',
+    author_email='jnphilipp@gmail.com',
     #description='UI for managing …',
     #long_description='Here a longer description',
     #url='https://launchpad.net/books',
     data_files=[
-        ('share/unity/lenses/books', ['books.lens']),
-        ('share/dbus-1/services', ['unity-lens-books.service']),
-        ('share/unity/lenses/books', ['unity-lens-books.svg']),
-        ('bin', ['bin/books']),
+        ('/usr/share/unity/lenses/books', ['books.lens']),
+        ('/usr/share/dbus-1/services', ['unity-lens-books.service']),
+        ('/usr/share/unity/lenses/books', ['unity-lens-books.svg']),
+        ('/usr/share/unity/lenses/books/data', ['data/books.png']),
+        ('/usr/share/unity/lenses/books/data', ['data/group_books.png']),
+        ('/usr/bin', ['bin/books']),
     ],
     cmdclass={"build":  build_extra.build_extra, 'install': InstallAndUpdateDataDirectory}
     )

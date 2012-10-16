@@ -2,10 +2,10 @@
 DBusName=unity.singlet.lens.books
 DBusPath=/unity/singlet/lens/books
 Name=Books
-Icon=/usr/share/unity/lenses/books/unity-lens-books.svg
+Icon=/usr/share/unity/lenses/books/data/books.png
 Description=Books Lens
 SearchHint=Search Books
-#Shortcut=c
+Shortcut=b
 
 [Desktop Entry]
 X-Ubuntu-Gettext-Domain=books
