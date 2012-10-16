@@ -1,0 +1,46 @@
+	Unit Lens Books
+
+A Unity Lens for searching Books.
+==================================================
+
+I.    Description
+II.   Requirements
+III.  Compiling Library
+IV.   Start Library
+V.    Troubleshooting
+VI.   Help, Feedback & Bug Reports
+VII.  About
+
+
+I.    Description
+==================================================
+Searching books via a Unity Lens. Currently
+supports only the calibre library as a source.
+
+II.   Requirements
+==================================================
+Python, Unity, Calibre
+Recommended: quickly
+
+III.  Compiling Library
+==================================================
+sudo quickly install
+
+IV.   Start Library
+==================================================
+quickly run
+
+V.    Troubleshooting
+==================================================
+In need of help or for more information feel free
+to send a mail to jnphilipp@gmail.com.
+
+VI.   Help, Feedback & Bug Reports
+==================================================
+For Help, Feedback or Bug Reports, send a mail to
+jnphilipp@gmail.com.
+
+
+VII.  About
+==================================================
+Content is (C) 2012 jnphilipp

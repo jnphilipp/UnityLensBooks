@@ -15,7 +15,6 @@ class SQLite:
 			self._con = lite.connect(path)
 		except lite.Error, e:
 			print e
-			print path
 
 	def close(self):
 		"""closes the current connection"""
