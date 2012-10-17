@@ -1,6 +1,6 @@
 	Unit Lens Books
 
-A Unity Lens for searching Books.
+This lens provides a unified search engine for books.
 ==================================================
 
 I.    Description
@@ -14,8 +14,9 @@ VII.  About
 
 I.    Description
 ==================================================
-Searching books via a Unity Lens. Currently
-supports only the calibre library as a source.
+This lens provides a unified search engine for
+books. Currently the books muste be stored in
+either ~/Documents or the Calibre database.
 
 II.   Requirements
 ==================================================

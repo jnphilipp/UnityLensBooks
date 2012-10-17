@@ -57,7 +57,7 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
 
 DistUtilsExtra.auto.setup(
     name='books',
-    version='0.1',
+    version='0.2',
     license='GPL-3',
     author='jnphilipp',
     author_email='jnphilipp@gmail.com',

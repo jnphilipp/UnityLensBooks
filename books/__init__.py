@@ -16,6 +16,7 @@ import urllib
 import urllib2
 import simplejson
 import locale
+import fnmatch
 from configobj import ConfigObj
 
 class BooksLens(SingleScopeLens):
@@ -29,7 +30,7 @@ class BooksLens(SingleScopeLens):
 		search_in_global = True
 
 	icon_base = '/usr/share/unity/lenses/books/data/'
-	bookshelf_category = ListViewCategory("Bookshelf", icon_base + 'group_books.png')
+	bookshelf_category = IconViewCategory("Bookshelf", icon_base + 'group_books.png')
 	calibre_library = ''
 
 	def __init__(self):
@@ -41,22 +42,39 @@ class BooksLens(SingleScopeLens):
 			self.calibre_library = prop['library_path'][2:len(prop['library_path'])-1]
 
 	def search(self, search, results):
-		if self.calibre_library == '':
-			return
+		url = 'application://calibre.desktop'
+		for book in self.search_calibre('%' + search + '%'):
+			dad_url = self.calibre_library + '/' + book[2] + '/' + book[3] + '.' + book[4]
+			if book[1] == 1:
+				icon = self.calibre_library + '/' + book[2] + '/cover.jpg'
+			else:
+				icon = 'calibre'
 
-		search = '%' + search + '%'
+			results.append(url, icon, self.bookshelf_category, 'application-x-desktop', book[0], book[5], dad_url)
+
+		for book in self.find_files(glib.get_user_special_dir(glib.USER_DIRECTORY_DOCUMENTS), ['*' + search + '*.pdf']):
+			dad_url = book[0]
+			url = 'file://' + dad_url
+			icon = 'application-pdf'#'/usr/share/unity/lenses/books/data/books.png'
+			results.append(url, icon, self.bookshelf_category, 'application/pdf ', book[1], book[1], dad_url)
+
+		pass
+
+	def search_calibre(self, search):
+		if self.calibre_library == '':
+			return []
+
 		sq = sqlite.SQLite()
 		sq.open(os.path.join(self.calibre_library, 'metadata.db'))
 		books = sq.execute('select title, has_cover, path, data.name, format, authors.name from books join data on books.id=data.book join books_authors_link on books.id=books_authors_link.book join authors on books_authors_link.author=authors.id where title like ? or authors.name like ?', (search, search))
 		sq.close()
 
-		url = 'application://calibre.desktop'
-		for book in books:
-			dad_url = self.calibre_library + '/' + book[2] + '/' + book[3] + '.' + book[4]
-			if book[1] == 1:
-				icon = self.calibre_library + '/' + book[2] + '/cover.jpg'
-			else:
-				icon = '/usr/share/unity/lenses/books/data/books.png'
+		return books
 
-			results.append(url, icon, self.bookshelf_category, 'application-x-desktop', book[0], book[5], dad_url)
-		pass
+	def find_files(self, directory, patterns):
+		for root, dirs, files in os.walk(directory):
+			for basename in files:
+				matched = any(fnmatch.fnmatch(basename, p) for p in patterns)
+				if matched:
+					filename = os.path.join(root, basename)
+					yield [filename, basename]

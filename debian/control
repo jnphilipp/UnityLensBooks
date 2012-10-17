@@ -13,6 +13,8 @@ Architecture: all
 Depends: ${misc:Depends},
  ${python:Depends},
  python-unity-singlet,
+ python-gobject-2,
+ python-configobj,
  python-simplejson
 Description: UNKNOWN
  UNKNOWN
