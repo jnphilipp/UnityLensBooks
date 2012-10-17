@@ -44,19 +44,23 @@ class BooksLens(SingleScopeLens):
 	def search(self, search, results):
 		url = 'application://calibre.desktop'
 		for book in self.search_calibre('%' + search + '%'):
-			dad_url = self.calibre_library + '/' + book[2] + '/' + book[3] + '.' + book[4]
+			dad_url = self.calibre_library + '/' + book[2] + '/' + book[3] + '.' + book[4].lower()
 			if book[1] == 1:
 				icon = self.calibre_library + '/' + book[2] + '/cover.jpg'
 			else:
 				icon = 'calibre'
 
-			results.append(url, icon, self.bookshelf_category, 'application-x-desktop', book[0], book[5], dad_url)
+			if book[4] == 'PDF':
+				results.append('file://' + dad_url, icon, self.bookshelf_category, 'application/pdf', book[0], book[5], dad_url)
+			else:
+				results.append(url, icon, self.bookshelf_category, 'application-x-desktop', book[0], book[5], dad_url)
 
-		for book in self.find_files(glib.get_user_special_dir(glib.USER_DIRECTORY_DOCUMENTS), ['*' + search + '*.pdf']):
-			dad_url = book[0]
-			url = 'file://' + dad_url
-			icon = 'application-pdf'#'/usr/share/unity/lenses/books/data/books.png'
-			results.append(url, icon, self.bookshelf_category, 'application/pdf ', book[1], book[1], dad_url)
+		if len(search) > 1:
+			for book in self.find_files(glib.get_user_special_dir(glib.USER_DIRECTORY_DOCUMENTS), ['*' + search + '*.pdf']):
+				dad_url = book[0]
+				url = 'file://' + dad_url
+				icon = 'application-pdf'#'/usr/share/unity/lenses/books/data/books.png'
+				results.append(url, icon, self.bookshelf_category, 'application/pdf ', book[1], book[1], dad_url)
 
 		pass
 

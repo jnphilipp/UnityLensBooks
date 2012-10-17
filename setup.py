@@ -56,7 +56,7 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
 ##################################################################################
 
 DistUtilsExtra.auto.setup(
-    name='books',
+    name='unity-lens-books',
     version='0.2',
     license='GPL-3',
     author='jnphilipp',
@@ -70,7 +70,7 @@ DistUtilsExtra.auto.setup(
         ('/usr/share/unity/lenses/books', ['unity-lens-books.svg']),
         ('/usr/share/unity/lenses/books/data', ['data/books.png']),
         ('/usr/share/unity/lenses/books/data', ['data/group_books.png']),
-        ('/usr/bin', ['bin/books']),
+        ('/usr/bin', ['bin/unity-lens-books']),
     ],
     cmdclass={"build":  build_extra.build_extra, 'install': InstallAndUpdateDataDirectory}
     )

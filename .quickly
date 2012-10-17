@@ -1,4 +1,4 @@
-project = books
+project = unity-lens-books
 version = 12.04
 template = unity-lens
 version_ubuntu-application = 12.04
